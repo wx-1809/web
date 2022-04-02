@@ -11,7 +11,7 @@ class Category(models.Model):
 
     def __unicode__(self):
         # return 'Category: %s' % self.cname
-        return u'Catogory: %s' % self.cname
+        return u'Catogory: %s'% self.cname
 
 class Tag(models.Model):
     tname = models.CharField(max_length=30,unique=True, verbose_name=u'标签名称')
