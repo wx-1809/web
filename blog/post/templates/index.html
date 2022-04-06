@@ -31,26 +31,26 @@
 
 {% block left %}
     <div id="main">
-
+        {% for post in postlist %}
             <article class="article article-type-post">
             <div class="article-meta">
                 <a class="article-date">
-                    <time>2018-06-26 16:58:24</time>
+                    <time>{{ post.created|date:'Y-m-d H:i:s' }}</time>
                 </a>
                 <div class="article-category">
-                    <a class="article-category-link" href="#" target="_blank">后端</a>
+                    <a class="article-category-link" href="#" target="_blank">{{ post.category.cname }}</a>
                 </div>
             </div>
             <div class="article-inner">
                 <header class="article-header">
                     <h1 itemprop="name">
-                        <a class="article-title" href="#" target="_blank">T4</a>
+                        <a class="article-title" href="#" target="_blank">{{ post.title }}</a>
                     </h1>
                 </header>
                 <div class="article-entry" itemprop="articleBody">
                     <h2>前言</h2>
                     <hr>
-                    &lt;p&gt;&lt;img alt="" sr...
+                    {{ post.desc }}
 
 
                     <p class="article-more-link">
@@ -60,73 +60,45 @@
                 <footer class="article-footer">
                     <a data-url="存放文章的url" class="article-share-link">分享</a>
                     <ul class="article-tag-list">
+                        {% for tag in post.tag.all %}
 
-                        <li class="article-tag-list-item">
-                            <a class="article-tag-list-link" href="#">Python</a>
-                        </li>
+                            <li class="article-tag-list-item">
+                                <a class="article-tag-list-link" href="#">tag.tname</a>
+                            </li>
+
+                        {% endfor %}
+
+
 
                     </ul>
                 </footer>
             </div>
         </article>
+        {% endfor %}
 
 
         <nav id="page-nav">
+                {% if postlist.has_previous %}
+                    <a class="extend prev" rel="next" href="/page/{{ postlist.previous_page_number }}"> « Prev</a>
+                {% endif %}
+
+                {% for page in pagelist %}
+                    {% if currentNum == page %}
+                        <span class="page-number current">{{ page }}</span>
+                    {% else %}
+                        <a class="page-number" href="/page/{{ page }}">{{page}}</a>
+                    {% endif %}
+
+                {% endfor %}
 
 
-                <span class="page-number current">1</span>
-
-
-
-                <a class="page-number" href="/page/2">2</a>
-
-
-
-                <a class="page-number" href="/page/3">3</a>
-
-
-
-                <a class="page-number" href="/page/4">4</a>
-
-
-
-                <a class="page-number" href="/page/5">5</a>
-
-
-
-                <a class="page-number" href="/page/6">6</a>
-
-
-
-                <a class="page-number" href="/page/7">7</a>
-
-
-
-                <a class="page-number" href="/page/8">8</a>
-
-
-
-
-            <a class="extend next" rel="next" href="/page/2">Next »</a>
-
-
-
-
-
-
-
-
-
-
+            {% if postlist.has_next %}
+                <a class="extend next" rel="next" href="/page/{{ postlist.next_page_number }}">Next »</a>
+            {% endif %}
 
         </nav>
 
-
-
-
-
-
-                    </div>
+    </div>
 
 
 {% endblock %}
