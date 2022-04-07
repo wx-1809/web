@@ -6,6 +6,8 @@ from django.urls import path, re_path
 
 urlpatterns = [
     path('', views.queryAll), #^$
-    re_path(r'^page/(\d+)$', views.queryAll)
-    # url(r'^page/(\d+)$', views.queryAll),
+    re_path(r'^page/(\d+)$', views.queryAll),
+    # url(r'^page/(\d+)$', views.queryAll), post
+    re_path(r'^post/(\d+)$', views.detail),
+
 ]

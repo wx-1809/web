@@ -2,32 +2,6 @@
 
 {% block title %}首页{% endblock %}
 
-{% block headerjs %}
-
-    <style>
-
-        form {
-          position: relative;
-          width: 150px;
-          margin: 0 auto;
-        }
-        .d1{
-            float: right;
-            line-height: 67px;
-        }
-        .d1 input {
-          width: 100px;
-          height: 30px;
-          border: 2px solid darkred;
-          border-radius: 5px;
-          outline: none;
-          background: white;
-          color: #1e242a;
-        }
-    </style>
-
-{% endblock %}
-
 
 {% block left %}
     <div id="main">
@@ -54,7 +28,7 @@
 
 
                     <p class="article-more-link">
-                        <a href="/post/8" target="_blank">阅读全文</a>
+                        <a href="/post/{{ post.id }}" target="_blank">阅读全文</a>
                     </p>
                 </div>
                 <footer class="article-footer">

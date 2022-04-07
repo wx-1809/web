@@ -1,5 +1,5 @@
 from django.db import models
-
+from ckeditor_uploader.fields import RichTextUploadingField
 # Create your models here.
 
 class Category(models.Model):
@@ -27,7 +27,7 @@ class Tag(models.Model):
 class Post(models.Model):
     title = models.CharField(max_length=100,unique=True)
     desc = models.CharField(max_length=100)
-    content = models.TextField()
+    content = RichTextUploadingField(null=True, blank=True)
     create = models.DateTimeField(auto_now_add=True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     tag = models.ManyToManyField(Tag)

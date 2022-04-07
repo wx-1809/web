@@ -36,3 +36,10 @@ def queryAll(request,num=1):
     pagelist = range(begin, end + 1)
 
     return render(request, 'index.html', {'postlist':perPageList, 'pagelist': pagelist, 'currentNum':num})
+
+#阅读全文gongn
+def detail(request,postid):
+    postid = int(postid)
+    #根据postid查询帖子详情
+    post = models.Post.objects.get(id=postid)
+    return render(request, 'detail.html', {'post':post})
